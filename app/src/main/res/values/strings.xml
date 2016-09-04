@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ILoveNougat</string>
+    <string name="query_text">Enter query here</string>
+    <string name="search_button_text">Search</string>
+</resources>
