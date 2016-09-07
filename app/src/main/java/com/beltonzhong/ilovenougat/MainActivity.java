@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private EditText queryField;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +40,12 @@ public class MainActivity extends Activity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-
         searchButton = (Button) findViewById(R.id.search_button);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String query = queryField.getText().toString();
-                new RequestTask().execute("zappos", query, "%3E&key=b743e26728e16b81da139182bb2094357c31d331");
+                new ZapposRequestTask().execute(query);
             }
         });
     }
@@ -75,10 +75,10 @@ public class MainActivity extends Activity {
         return result;
     }
 
-    private class RequestTask extends AsyncTask<String, Void, String> {
+    public class ZapposRequestTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
-            return getRequest("https://api." + params[0] + ".com/Search?term=%3C" + params[1] + params[2]);
+            return getRequest("https://api.zappos.com/Search?term=%3C" + params[0] + "%3E&key=b743e26728e16b81da139182bb2094357c31d331");
         }
 
         @Override
@@ -88,7 +88,6 @@ public class MainActivity extends Activity {
                 JSONArray resultsArray = resultObject.getJSONArray("results");
                 adapter = new MyAdapter(resultsArray);
                 recyclerView.setAdapter(adapter);
-
             } catch (JSONException e) {
                 Log.e("MainActivity", e.getMessage());
                 e.printStackTrace();

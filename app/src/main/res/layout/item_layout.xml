@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/item_padding">
+    android:padding="@dimen/item_padding"
+    android:background="@color/item_background">
 
     <ImageView
         android:id="@+id/thumbnail_image"
@@ -26,6 +27,11 @@
             android:textStyle="bold"/>
         <TextView
             android:id="@+id/product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/medium_font_size"/>
+        <TextView
+            android:id="@+id/price_notification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/medium_font_size"/>
@@ -63,4 +69,9 @@
                 android:textStyle="italic" />
         </LinearLayout>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/horizontal_line_width"
+        android:layout_alignParentBottom="true"
+        android:background="@color/horizontal_line_color"/>
 </RelativeLayout>
